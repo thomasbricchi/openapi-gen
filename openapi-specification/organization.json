@@ -1,0 +1,4 @@
+{
+  "input": "./openapi-specification/openapi-organization.yaml",
+  "removeStaleFiles": false
+}

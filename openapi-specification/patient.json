@@ -1,0 +1,4 @@
+{
+  "input": "./openapi-specification/openapi-patient.yaml",
+  "removeStaleFiles": false
+}
