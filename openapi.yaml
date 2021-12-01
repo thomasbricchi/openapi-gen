@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: patients
+  description: patients api
+servers:
+  - url: https://hipbe.dev.cdm.ch
+    description: HIP Forms Backend Dev
+  - url: http://localhost:8080
+    description: HIP Forms Backend Local
+security:
+  - bearerAuth: [ ]
+tags:
+  - name: Patients
+    description: Patient management
+paths:
+  /patients:
+    get:
+      tags:
+        - patients
+      summary: Lists of patients
+      operationId: getPatients
+      responses:
+        200:
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                type: 'array'
+                items:
+                  $ref: '#/components/schemas/PatientDto'
+        401:
+          description: Unauthorized
+          content: { }
+        500:
+          description: Internal Error
+          content: { }
+    post:
+      tags:
+        - patients
+      summary: create patient
+      operationId: postPatient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientDto'
+      responses:
+        200:
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientDto'
+        401:
+          description: Unauthorized
+          content: { }
+        500:
+          description: Internal Error
+          content: { }
+components:
+  schemas:
+    PatientDto:
+      type: object
+      description: The FormEntry (Form or Form Category)
+      properties:
+        id:
+          type: integer
+          format: "int64"
+          description: The Form or Form Category Object Id
+          example: 11
+        givenName:
+          type: string
+          description: The Form or Form Category name
+          example: Arztzeugnis UVG
+        familyName:
+          type: string
+          description: The Form or Form Category Unique Id
+          example: 123456789
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
