@@ -1,15 +1,15 @@
-import {Inject, Injectable} from '@angular/core';
-import {APP_CONFIG, AppConfig} from "./app.config";
+import {Injectable} from '@angular/core';
+import {config} from "../assets/config/config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvioronmentsService {
 
-  constructor(@Inject(APP_CONFIG) private environment: AppConfig) {
+  constructor() {
   }
 
   get url() {
-    return this.environment.rootUrl;
+    return config.rootUrl;
   }
 }
