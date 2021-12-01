@@ -3,9 +3,10 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
+import {EnvioronmentsService} from "./envioronments.service";
+import {CoreModule} from "./core/core.module";
 import {ApiModule} from "./api/api.module";
 import {ApiConfiguration, ApiConfigurationParams} from "./api/api-configuration";
-import {EnvioronmentsService} from "./envioronments.service";
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import {EnvioronmentsService} from "./envioronments.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    ApiModule
+    ApiModule,
+    CoreModule
   ],
   providers: [{
     provide: ApiConfiguration,
     useFactory: authConfiguration,
     deps: [EnvioronmentsService]
-  },],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
